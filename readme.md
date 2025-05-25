@@ -1,1 +1,3 @@
-<h1 align="center">Hello there is Mykhailo Masliancuk</h1>
+<h1 align="left">Треба реалізувати просту програму з наступними умовами:<br>
+За допомогою prompt запитати ім'я користувача.<br>
+За допомогою alert вивести "Hello, John! How are you?" , де John це те, що ввів користувач.</h1>
