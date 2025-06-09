@@ -1,20 +1,25 @@
 'use strict'
 
-let userInfoTime = +prompt(`Вкажіть будь ласка кількість годин:`);
-    if(isNaN(userInfoTime)) {
-        alert('Введіть будь ласка числове значення!');
-        userInfoTime = +prompt(`Вкажіть будь ласка кількість годин:`);
-        if((userInfoTime)) {
-            const userInfoSeconds = (userInfoTime * 60)*60;
-            alert(`У ${userInfoTime} годині(ах) міститься ${userInfoSeconds} секунд.`)
-        }
-    }else {
-        const userInfoSeconds = (userInfoTime * 60)*60;
-        alert(`У ${userInfoTime} годині(ах) міститься ${userInfoSeconds} секунд.`)
+alert(`Для визначення середнього арифметичного значення,\nвведіть будь ласка три чисельники.`)
+
+let a = +prompt('Введіть перше значення:')
+    if (isNaN(a)){
+        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
+        a = +prompt('Введіть перше значення:')
     }
 
+let b = +prompt('Введіть друге значення:')
+    if (isNaN(b)){
+        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
+        b = +prompt('Введіть перше значення:')
+    }
 
+let c = +prompt('Введіть третє значення:')
+    if (isNaN(c)){
+        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
+        c = +prompt('Введіть перше значення:')
+    }
 
+const d = (a + b + c)/3;
 
-
-
+alert(`Середнє арифметичне значення чисел дорівнює ${d}`);
