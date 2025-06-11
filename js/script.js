@@ -71,24 +71,6 @@ let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`
         }
     }
 
-    // switch(userFavoriteSport) {
-    //     case `Боротьба`:{
-    //         userFavoriteSport = `Жан Беленюк`;
-    //         break;
-    //     }
-    //     case `Футбол`:{
-    //         userFavoriteSport = `Олександр Зінченко`;
-    //         break;
-    //     }
-    //     case `Бокс`:{
-    //         userFavoriteSport = `Олександр Усик`;
-    //         break;
-    //     }
-    //     default:{
-    //
-    //     }
-    // }
-
     switch (true){
         case userFavoriteSport === `Боротьба`:{
             userFavoriteSport = `Жан Беленюк`;
