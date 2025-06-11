@@ -63,33 +63,57 @@ alert(`Імʼя користувача: ${userName}\nВік користувач
 let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
     if (userFavoriteSport === null || userFavoriteSport === '') {
         alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
-        userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
     }else if(!isNaN(userFavoriteSport)) {
         alert(`Ви ввели некоректне значення!\nВведіть ваш вид спорту не в числовому значенні.`);
         userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
         if (!isNaN(userFavoriteSport) || userFavoriteSport === null || userFavoriteSport === '') {
             alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
-            userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
         }
     }
 
-    switch(userFavoriteSport) {
-        case `Боротьба`:{
+    // switch(userFavoriteSport) {
+    //     case `Боротьба`:{
+    //         userFavoriteSport = `Жан Беленюк`;
+    //         break;
+    //     }
+    //     case `Футбол`:{
+    //         userFavoriteSport = `Олександр Зінченко`;
+    //         break;
+    //     }
+    //     case `Бокс`:{
+    //         userFavoriteSport = `Олександр Усик`;
+    //         break;
+    //     }
+    //     default:{
+    //
+    //     }
+    // }
+
+    switch (true){
+        case userFavoriteSport === `Боротьба`:{
             userFavoriteSport = `Жан Беленюк`;
+            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
             break;
         }
-        case `Футбол`:{
-            userFavoriteSport = `Олександр Зінченко`;
-            break;
-        }
-        case `Бокс`:{
+        case userFavoriteSport === `Бокс`:{
             userFavoriteSport = `Олександр Усик`;
+            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
             break;
         }
-        default:{
-
+        case userFavoriteSport === `Футбол`:{
+            userFavoriteSport = `Олександр Зінченко`;
+            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
+            break;
+        }
+        case userFavoriteSport === null || userFavoriteSport === '':{
+            userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
+            confirm(userFavoriteSport);
+            break;
+        }
+        default: {
+            alert(`Ваш улюблений вид спорту ${userFavoriteSport}!`);
         }
     }
 
-confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
+
 
