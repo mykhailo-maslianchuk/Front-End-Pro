@@ -3,39 +3,39 @@
 alert(`Введіть будь ласка ваші данні:`);
 let userName = prompt('Ваше імʼя ?');
     if (userName === null || userName === '') {
-        alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
+        alert(`Шкода, що Ви не захотіли вказати своє імʼя.`);
         userName = `Користувач не вказав імʼя.`;
     }else if(!isNaN(userName)){
         alert(`Ви ввели некоректне значення!\nВведіть ваше імʼя не в числовому значенні.`);
         userName = prompt('Ваше імʼя ?');
         if (!isNaN(userName) || userName === null  || userName === '') {
-            alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
+            alert(`Шкода, що Ви не захотіли вказати своє імʼя.`);
             userName = `Користувач не вказав імʼя.`;
         }
     }
 
 let userAge = +prompt(`Ваш вік ?`);
     if (userAge === 0 || userAge === '') {
-        alert(`Шкода, що Ви не захотіли вказати свій вік`);
+        alert(`Шкода, що Ви не захотіли вказати свій вік.`);
         userAge = `Користувач не вказав кількість`;
     }else  if(isNaN(userAge)) {
         alert(`Ви ввели некоректне значення!\nВведіть ваш вік в числовому значенні.`);
         userAge = +prompt(`Ваш вік ?`);
         if (isNaN(userAge) || userAge === 0  || userAge === '') {
-            alert(`Шкода, що Ви не захотіли вказати свій вік`);
+            alert(`Шкода, що Ви не захотіли вказати свій вік.`);
             userAge = `Користувач не вказав кількість`;
         }
     }
 
 let userResidenceCity = prompt(`Ваше місто проживання ?`);
     if (userResidenceCity === null || userResidenceCity === '') {
-        alert(`Шкода, що Ви не захотіли вказати своє місто`);
+        alert(`Шкода, що Ви не захотіли вказати своє місто.`);
         userResidenceCity = `Користувач не вказав місто проживання.`;
     }else if(!isNaN(userResidenceCity)){
         alert(`Ви ввели некоректне значення!\nВведіть ваше місто не в числовому значенні.`);
         userResidenceCity = prompt(`Ваше місто проживання ?`);
         if (!isNaN(userResidenceCity) || userResidenceCity === null  || userResidenceCity === '') {
-            alert(`Шкода, що Ви не захотіли вказати своє місто`);
+            alert(`Шкода, що Ви не захотіли вказати своє місто.`);
             userResidenceCity = `Користувач не вказав місто проживання.`;
         }
     }
@@ -62,28 +62,28 @@ alert(`Імʼя користувача: ${userName}\nВік користувач
 
 let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
     if (userFavoriteSport === null || userFavoriteSport === '') {
-        alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту`);
-        userFavoriteSport = `Користувач не вказав улюблений вид спорту`;
+        alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
+        userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
     }else if(!isNaN(userFavoriteSport)) {
         alert(`Ви ввели некоректне значення!\nВведіть ваш вид спорту не в числовому значенні.`);
         userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
         if (!isNaN(userFavoriteSport) || userFavoriteSport === null || userFavoriteSport === '') {
-            alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту`);
-            userFavoriteSport = `Користувач не вказав улюблений вид спорту`;
+            alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
+            userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
         }
     }
 
     switch(userFavoriteSport) {
         case `Боротьба`:{
-            userFavoriteSport = `Круто! Хочеш стати таким як Жан Беленюк ?`;
+            userFavoriteSport = `Жан Беленюк`;
             break;
         }
         case `Футбол`:{
-            userFavoriteSport = `Круто! Хочеш стати таким як Олександр Зінченко ?`;
+            userFavoriteSport = `Олександр Зінченко`;
             break;
         }
         case `Бокс`:{
-            userFavoriteSport = `Круто! Хочеш стати таким як Олександр Усик ?`;
+            userFavoriteSport = `Олександр Усик`;
             break;
         }
         default:{
@@ -91,5 +91,5 @@ let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`
         }
     }
 
-alert(userFavoriteSport);
+confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
 
