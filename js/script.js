@@ -1,26 +1,95 @@
 'use strict'
 
-alert(`Для визначення середнього арифметичного значення,\nвведіть будь ласка три чисельники.`)
-
-const a = +prompt('Введіть перше значення:')
-    if (isNaN(a)){
-        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
-        const a = +prompt('Введіть перше значення:')
+alert(`Введіть будь ласка ваші данні:`);
+let userName = prompt('Ваше імʼя ?');
+    if (userName === null || userName === '') {
+        alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
+        userName = `Користувач не вказав імʼя.`;
+    }else if(!isNaN(userName)){
+        alert(`Ви ввели некоректне значення!\nВведіть ваше імʼя не в числовому значенні.`);
+        userName = prompt('Ваше імʼя ?');
+        if (!isNaN(userName) || userName === null  || userName === '') {
+            alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
+            userName = `Користувач не вказав імʼя.`;
+        }
     }
 
-const b = +prompt('Введіть друге значення:')
-    if (isNaN(b)){
-        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
-        const b = +prompt('Введіть перше значення:')
+let userAge = +prompt(`Ваш вік ?`);
+    if (userAge === 0 || userAge === '') {
+        alert(`Шкода, що Ви не захотіли вказати свій вік`);
+        userAge = `Користувач не вказав кількість`;
+    }else  if(isNaN(userAge)) {
+        alert(`Ви ввели некоректне значення!\nВведіть ваш вік в числовому значенні.`);
+        userAge = +prompt(`Ваш вік ?`);
+        if (isNaN(userAge) || userAge === 0  || userAge === '') {
+            alert(`Шкода, що Ви не захотіли вказати свій вік`);
+            userAge = `Користувач не вказав кількість`;
+        }
     }
 
-const c = +prompt('Введіть третє значення:')
-    if (isNaN(c)){
-        alert(`Ви ввели некоректне значення!\nВведіть будь ласка числове значення.`)
-        const c = +prompt('Введіть перше значення:')
+let userResidenceCity = prompt(`Ваше місто проживання ?`);
+    if (userResidenceCity === null || userResidenceCity === '') {
+        alert(`Шкода, що Ви не захотіли вказати своє місто`);
+        userResidenceCity = `Користувач не вказав місто проживання.`;
+    }else if(!isNaN(userResidenceCity)){
+        alert(`Ви ввели некоректне значення!\nВведіть ваше місто не в числовому значенні.`);
+        userResidenceCity = prompt(`Ваше місто проживання ?`);
+        if (!isNaN(userResidenceCity) || userResidenceCity === null  || userResidenceCity === '') {
+            alert(`Шкода, що Ви не захотіли вказати своє місто`);
+            userResidenceCity = `Користувач не вказав місто проживання.`;
+        }
     }
 
-const d = (a + b + c)/3;
-    console.log(d);
+     switch (userResidenceCity) {
+         case `Київ`:{
+             userResidenceCity = `Ти живеш у столиці України, столицею якої є місто Київ.`;
+            break;
+         }
+         case `Вашингтон`:{
+             userResidenceCity = `Ти живеш у столиці США, столицею якої є місто Вашингтон.`;
+             break;
+         }
+         case `Лондон`:{
+            userResidenceCity = `Ти живеш у столиці Англії, столицею якої є місто Лондон.`;
+            break;
+         }
+         default:{
 
-alert(`Середнє арифметичне значення чисел дорівнює ${d}`);
+         }
+     }
+
+alert(`Імʼя користувача: ${userName}\nВік користувача: ${userAge} років.\nМісто проживання: ${userResidenceCity}`)
+
+let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
+    if (userFavoriteSport === null || userFavoriteSport === '') {
+        alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту`);
+        userFavoriteSport = `Користувач не вказав улюблений вид спорту`;
+    }else if(!isNaN(userFavoriteSport)) {
+        alert(`Ви ввели некоректне значення!\nВведіть ваш вид спорту не в числовому значенні.`);
+        userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
+        if (!isNaN(userFavoriteSport) || userFavoriteSport === null || userFavoriteSport === '') {
+            alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту`);
+            userFavoriteSport = `Користувач не вказав улюблений вид спорту`;
+        }
+    }
+
+    switch(userFavoriteSport) {
+        case `Боротьба`:{
+            userFavoriteSport = `Круто! Хочеш стати таким як Жан Беленюк ?`;
+            break;
+        }
+        case `Футбол`:{
+            userFavoriteSport = `Круто! Хочеш стати таким як Олександр Зінченко ?`;
+            break;
+        }
+        case `Бокс`:{
+            userFavoriteSport = `Круто! Хочеш стати таким як Олександр Усик ?`;
+            break;
+        }
+        default:{
+
+        }
+    }
+
+alert(userFavoriteSport);
+
