@@ -1,101 +1,85 @@
 'use strict'
 
-alert(`Введіть будь ласка ваші данні:`);
-let userName = prompt('Ваше імʼя ?');
-    if (userName === null || userName === '') {
-        alert(`Шкода, що Ви не захотіли вказати своє імʼя.`);
-        userName = `Користувач не вказав імʼя.`;
-    }else if(!isNaN(userName)){
-        alert(`Ви ввели некоректне значення!\nВведіть ваше імʼя не в числовому значенні.`);
-        userName = prompt('Ваше імʼя ?');
-        if (!isNaN(userName) || userName === null  || userName === '') {
-            alert(`Шкода, що Ви не захотіли вказати своє імʼя.`);
-            userName = `Користувач не вказав імʼя.`;
-        }
+let result = ``;
+for (let i = 10; i <= 20; i++) {
+    result += i;
+    if (i < 20) {
+        result += `, `;
     }
+}
+console.log(`Числа від 10 до 20 = ${result}`);
+console.log(`\n`);
 
-let userAge = +prompt(`Ваш вік ?`);
-    if (userAge === 0 || userAge === '') {
-        alert(`Шкода, що Ви не захотіли вказати свій вік.`);
-        userAge = `Користувач не вказав кількість`;
-    }else  if(isNaN(userAge)) {
-        alert(`Ви ввели некоректне значення!\nВведіть ваш вік в числовому значенні.`);
-        userAge = +prompt(`Ваш вік ?`);
-        if (isNaN(userAge) || userAge === 0  || userAge === '') {
-            alert(`Шкода, що Ви не захотіли вказати свій вік.`);
-            userAge = `Користувач не вказав кількість`;
-        }
+for (let i = 10; i <= 20; i++) {
+    let square = i * i; // знаходимо квадрат
+    console.log(`Квадрат числа ${i} = ${square}`);
+}
+
+console.log(`\n`);
+for (let i = 1; i <= 10; i++) {
+    let result = 7 * i;
+    console.log(`7 × ${i} = ${result}\n`);
+}
+console.log(`\n`);
+
+let sum = 0;
+for (let i = 1; i <= 15; i++) {
+    sum += i;
+}
+console.log(`Сума від 1 до 15 = ${sum}`);
+console.log(`\n`);
+
+let product = 1n; // використовуємо BigInt для великих чисел
+for (let i = 15n; i <= 35n; i++) {
+    product *= i; // перемножаємо всі числа
+}
+console.log(`Добуток від 15 до 35 = ${product}`);
+console.log(`\n`);
+
+for (let i = 1; i <= 500; i++) {
+    sum += i;
+}
+let average = sum / 500;
+console.log(`Середнє арифметичне від 1 до 500 = ${average}`);
+console.log(`\n`);
+
+let evenSum = 0;
+for (let i = 30; i <= 80; i++) {
+    if (i % 2 === 0) {
+        evenSum += i;
     }
+}
+console.log(`Сума парних чисел від 30 до 80 = ${evenSum}`);
+console.log(`\n`);
 
-let userResidenceCity = prompt(`Ваше місто проживання ?`);
-    if (userResidenceCity === null || userResidenceCity === '') {
-        alert(`Шкода, що Ви не захотіли вказати своє місто.`);
-        userResidenceCity = `Користувач не вказав місто проживання.`;
-    }else if(!isNaN(userResidenceCity)){
-        alert(`Ви ввели некоректне значення!\nВведіть ваше місто не в числовому значенні.`);
-        userResidenceCity = prompt(`Ваше місто проживання ?`);
-        if (!isNaN(userResidenceCity) || userResidenceCity === null  || userResidenceCity === '') {
-            alert(`Шкода, що Ви не захотіли вказати своє місто.`);
-            userResidenceCity = `Користувач не вказав місто проживання.`;
-        }
+let multiples = [];
+for (let i = 100; i <= 200; i++) {
+    if (i % 3 === 0) {
+        multiples += (`${i}, `);
     }
+}
+console.log(`Числа кратні 3 = ${multiples}`);
+console.log(`\n`);
 
-     switch (userResidenceCity) {
-         case `Київ`:{
-             userResidenceCity = `Ти живеш у столиці України, столицею якої є місто Київ.`;
-            break;
-         }
-         case `Вашингтон`:{
-             userResidenceCity = `Ти живеш у столиці США, столицею якої є місто Вашингтон.`;
-             break;
-         }
-         case `Лондон`:{
-            userResidenceCity = `Ти живеш у столиці Англії, столицею якої є місто Лондон.`;
-            break;
-         }
-         default:{
-
-         }
-     }
-
-alert(`Імʼя користувача: ${userName}\nВік користувача: ${userAge} років.\nМісто проживання: ${userResidenceCity}`)
-
-let userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
-    if (userFavoriteSport === null || userFavoriteSport === '') {
-        alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
-    }else if(!isNaN(userFavoriteSport)) {
-        alert(`Ви ввели некоректне значення!\nВведіть ваш вид спорту не в числовому значенні.`);
-        userFavoriteSport = prompt(`Ваш улюблений вид спорту ?`);
-        if (!isNaN(userFavoriteSport) || userFavoriteSport === null || userFavoriteSport === '') {
-            alert(`Шкода, що Ви не захотіли вказати свій улюблений вид спорту.`);
-        }
+let number = 550;
+let divisors = [];
+for (let i = 1; i <= number; i++) {
+    if (number % i === 0) {
+        divisors += (`${i}, `);
     }
+}
+console.log(`Дільники числа ${number} = ${divisors}`);
+console.log(`\n`);
 
-    switch (true){
-        case userFavoriteSport === `Боротьба`:{
-            userFavoriteSport = `Жан Беленюк`;
-            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
-            break;
-        }
-        case userFavoriteSport === `Бокс`:{
-            userFavoriteSport = `Олександр Усик`;
-            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
-            break;
-        }
-        case userFavoriteSport === `Футбол`:{
-            userFavoriteSport = `Олександр Зінченко`;
-            confirm(`Круто! Хочеш стати таким як ${userFavoriteSport} ?`);
-            break;
-        }
-        case userFavoriteSport === null || userFavoriteSport === '':{
-            userFavoriteSport = `Користувач не вказав улюблений вид спорту.`;
-            confirm(userFavoriteSport);
-            break;
-        }
-        default: {
-            alert(`Ваш улюблений вид спорту ${userFavoriteSport}!`);
-        }
+let evenSum = 0;
+for (let i = 1; i <= number; i++) {
+    if (number % i === 0 && i % 2 === 0) {
+        evenSum += (`${i}, `);
     }
+}
+console.log(`Сума парних дільників: ${evenSum}`);
+
+
 
 
 
