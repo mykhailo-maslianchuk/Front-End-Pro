@@ -1,0 +1,33 @@
+{
+  "name": "hw-18",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix",
+      "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mykhailo-maslianchuk/Front-End-Pro.git"
+  },
+  "keywords": [
+    "Hello"
+  ],
+  "author": "Mykhailo Maslianchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mykhailo-maslianchuk/Front-End-Pro/issues"
+  },
+  "homepage": "https://github.com/mykhailo-maslianchuk/Front-End-Pro#readme",
+  "description": "",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^9.29.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.2.0",
+    "jest": "^30.0.0"
+  }
+}
