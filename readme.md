@@ -1,4 +1,10 @@
-#### Задача
+Реалізуйте функцію generateKey(length, characters), яка повертає рядок випадкових символів із набору characters довжиною length
 
-Напишіть функцію ```greetUser```, яка приймає один параметр — **ім'я користувача** (рядок),
-і повертає рядок виду: **"Привіт, [ІМ'Я]!"**
+Наприклад:
+```
+const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+const key = generateKey(16, characters);
+console.log(key); // eg599gb60q926j8i
+
+```
