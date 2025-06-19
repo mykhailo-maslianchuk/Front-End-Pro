@@ -1,30 +1,20 @@
 'use strict'
 
-function greetUser(from, text){
-     alert(`${text}, ${from}!`)
-}
+function generateKey(length, characters) {
+    let result = '';
+    const charactersLength = characters.length;
 
-let userName = prompt('Вкажіть будь ласка ваше імʼя: ');
-    if (userName === null || userName === '') {
-        alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
-        userName = `Користувач не вказав імʼя.`;
-    }else if(!isNaN(userName)){
-        alert(`Ви ввели некоректне значення!\nВведіть ваше імʼя не в числовому значенні.`);
-        userName = prompt('Ваше імʼя ?');
-        if (!isNaN(userName) || userName === null  || userName === '') {
-            alert(`Шкода, що Ви не захотіли вказати своє імʼя`);
-            userName = `Користувач не вказав імʼя`;
-        }
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charactersLength);
+        result += characters[randomIndex];
     }
 
-const messageWelcome = `Привіт`
+    return result;
+}
 
-greetUser(userName, messageWelcome);
-
-
-
-
-
+const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+const key = generateKey(16, characters);
+console.log(key);
 
 
 
