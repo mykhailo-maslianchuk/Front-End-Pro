@@ -1,26 +1,28 @@
 'use strict'
 
-const arr = [1, 2, 3, -1, -2, -3]
-
-function positiveNumbers(arr) {
-    if (arr.length === 0) {
-        return 'Масив порожній';
-    }
-
-    const exampleArr = [];
-
+function removeByValue(arr, value) {
+    let index = -1;
 
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > 0) {
-            exampleArr.push(arr[i]);
+        if (arr[i] === value) {
+            index = i;
+            break;
         }
     }
 
-    if (exampleArr.length > 0) {
-        return exampleArr;
+    if (index === -1) {
+        return arr;
     } else {
-        return null;
+        for (let i = index; i < arr.length - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+
+        arr.length = arr.length - 1;
+
+        return arr;
     }
 }
 
-console.log(positiveNumbers(arr));
+const array = [1, 2, 3, 4, 5, 6, 7];
+
+console.log(removeByValue(array, 5));
