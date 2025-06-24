@@ -1,55 +1,26 @@
-// 'use strict'
-//
-// const padString = (str, number, symbol, left = false) => {
-//     if(typeof str !== 'string') {
-//         throw new Error('Ви вели не коректне значення!');
-//     }
-//     if(typeof number !== 'number' || isNaN(number) || !isFinite(number)) {
-//         throw new Error('Ви вели не коректне значення!');
-//     }
-//     if(number === 0) return str;
-//
-//     if (typeof symbol !== `string` || symbol.length !== 1){
-//         throw new Error('Ви вели не коректне значення!');
-//     }
-//     if(typeof left !== `boolean`){
-//         throw new Error('Ви вели не коректне значення!');
-//     }
-//
-//     if(number < 0) {
-//         let result = ''
-//         for(let i = 0; i < str.length; i++) {
-//             if(left && i <= Math.abs(number) - 1) continue;                 // start
-//             if(!left && i >= str.length - Math.abs(number) ) continue;      // end
-//             result += str[i]
-//         }
-//         return result
-//     }
-//     let template = symbol.repeat(number);
-//     return left ? template + str : str + template
-// }
-//
-// const exampleStr = padString('hello', 3, '*', true);
-// console.log(exampleStr)
+'use strict'
 
-const padString = (str, number, symbol, left = false) => {
-    if (typeof str !== 'string' || typeof symbol !== 'string' || symbol.length !== 1 ||
-        typeof number !== 'number' || !isFinite(number) || typeof left !== 'boolean') {
-        throw new Error('Некоректні вхідні дані!');
+const arr = [1, 2, 3, -1, -2, -3]
+
+function positiveNumbers(arr) {
+    if (arr.length === 0) {
+        return 'Масив порожній';
     }
 
-    if (number === 0) return str;
+    const exampleArr = [];
 
-    if (number > 0) {
-        const pad = symbol.repeat(number);
-        return left ? pad + str : str + pad;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0) {
+            exampleArr.push(arr[i]);
+        }
     }
 
-    const abs = Math.abs(number);
-    return left ? str.slice(abs) : str.slice(0, str.length - abs);
-};
+    if (exampleArr.length > 0) {
+        return exampleArr;
+    } else {
+        return null;
+    }
+}
 
-console.log(padString('hello', 3, '*', true));   // ***hello
-console.log(padString('hello', 3, '*', false));  // hello***
-console.log(padString('hello', -2, '*', true));  // llo
-console.log(padString('hello', -2, '*', false)); // hel
+console.log(positiveNumbers(arr));
