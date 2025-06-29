@@ -1,132 +1,40 @@
-'use strict';
+'use strict'
 
-const filter = () =>{
-    let mainArr = [];
-    let mainLength = Number(prompt(`Вкажіть кількість елементів масиву:`));
+// 1. Ваша функція повинна працювати аналогічно методу array.shift
+const arr= [`Михайло`,`Вероніка`,`Анастасія`,`Марія`,`Василь`,`Назар`];
 
-    for(let i = 0; i < mainLength; i++) {
-        let element = prompt(`Вкажіть елемент ${i + 1} масиву:`);
-        let parsed = Number(element);
-        if(!isNaN(parsed) && element !== ``) {
-            mainArr.push(parsed);
-        }else {
-            mainArr.push(element);
-        }
+const arrShift = (arr) => {
+    if (arr.length === 0) return undefined;
+
+    const firstElement = arr[0];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        arr[i] = arr[i + 1];
     }
 
-    if(mainArr.length > 1) {
-        console.log(`Масив складається з таких елементів: [ ${mainArr.join(` | `)} ]`);
-    }
+    arr.length = arr.length - 1;
+    return firstElement;
+}
+console.log(`Видалений елемент масиву: [ ${arrShift(arr)} ]`);
+console.log(`Оновлений масив: [ ${arr.join(` | `)} ]`);
 
-    let sumNum = 0;
-    let countNums = 0;
+console.log(`------------------------------------------------------------------`)
 
-    for(let i = 0; i < mainArr.length; i++) {
-        if(typeof mainArr[i] === 'number' && !isNaN(mainArr[i])) {
-            sumNum += mainArr[i];
-            countNums++;
-        }
+//2 Ваша наступна функція повинна працювати аналогічно методу array.reverse
+
+const  arrReverse =  (arr) => {
+    let start = 0;
+    let end = arr.length - 1;
+
+    while (start < end) {
+        let temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
     }
-    if (countNums > 0) {
-        let average = sumNum / countNums;
-        console.log(`Сума всіх введених чисел: ${sumNum}`);
-        console.log(`Кількість введених чисел: ${countNums}`);
-        console.log(`Середнє значення: ${average}`);
-    } else {
-        console.log('Чисел не введено.');
-    }
+    return (arr);
 }
 
-//filter();
-
-console.log(`-------------------------------------------------------`);
-
-const doMath = () => {
-    alert(`Для виконання математичної дії, будь ласка, введіть два числа та оберіть оператор обчислення (наприклад: +, -, *, /, %/ **).`);
-    const x = Number(prompt(`Вкажіть будь ласка перше число:`));
-    const y = Number(prompt(`Вкажіть будь ласка друге число:`));
-    const znak = prompt(`Вкажіть будь ласка оператор дії: (+, -, *, /, %, **)`);
-
-    if(!isNaN(x) && !isNaN(y)) {
-        switch (znak) {
-            case `+`:
-                console.log(`${x} + ${y} = ${x + y}`);
-                break;
-            case `-`:
-                console.log(`${x} - ${y} = ${x - y}`);
-                break;
-            case `*`:
-                console.log(`${x} * ${y} = ${x * y}`);
-                break;
-            case `/`:
-                if (y === 0){
-                    console.log(`Ділення на нуль заборонено!`)
-                }else {
-                    console.log(`${x} / ${y} = ${x / y}`);
-                }
-                break;
-            case `%`:
-                console.log(`${x} % ${y} = ${x % y}`);
-                break;
-            case `**`:
-                console.log(`${x} ** ${y} = ${x ** y}`);
-                break;
-            default: console.log(`Ви не ввели оператор обчислення.`);
-        }
-    }else{
-        console.log(`Ви ввели некоректне значення!`);
-    }
-}
-
-// doMath()
-
-console.log(`-------------------------------------------------------`);
-
-const createComplexArray = () => {
-    let mainArray = [];
-
-    let mainLength = Number(prompt(`Вкажіть кількість елементів основного масиву:`));
-    for (let i = 0; i < mainLength; i++) {
-        let element = prompt(`Вкажіть елемент ${i + 1} основного масиву:`)
-        mainArray.push(element);
-    }
-
-    let innerCount = Number(prompt('Вкажіть кількість внутрішніх масивів:'));
-
-    for (let j = 0; j < innerCount; j++) {
-        let innerLength = Number(prompt(`Вкажіть кількість елементів внутрішнього масиву ${j + 1} :`));
-        let innerArray = [];
-
-        for (let n = 0; n < innerLength; n++) {
-            let innerElement = prompt(`Введіть елемент ${n + 1} для внутрішнього масиву ${j + 1}:`);
-            innerArray.push(innerElement);
-        }
-        mainArray.push(innerArray);
-    }
-
-    return mainArray;
-}
-
-// console.log(createComplexArray());
-console.log(`-------------------------------------------------------`);
-
-const removeChars = (str, charsToRemove) => {
-    let result = '';
-
-    for (let i = 0; i < str.length; i++) {
-        const currentChar = str[i];
-
-        if (!charsToRemove.includes(currentChar)) {
-            result += currentChar;
-        }
-    }
-
-    return result;
-};
-
-const inputStr = prompt('Введіть рядок, з якого треба видалити символи:');
-const charsStr = prompt('Введіть символи, які треба видалити (через кому):');
-const charsArray = charsStr.split(',').map(s => s.trim());
-const finalResult = removeChars(inputStr, charsArray);
-console.log(`Результат: ${finalResult}`);
-
+console.log(`Перевернутий масив: [ ${arrReverse(arr).join(` | `)} ]`);
