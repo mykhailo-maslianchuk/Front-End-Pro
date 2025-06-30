@@ -81,7 +81,7 @@ const indexfindIndex = findIndex(arr, value);
 
 console.log(`Масив: [ ${arr.join(' | ')} ]`);
 
-if (index !== -1) {
+if (indexfindIndex !== -1) {
     console.log(`Елемент більший за ${value} знайдено на позиції ${indexfindIndex} — це ${arr[indexfindIndex]}`);
 } else {
     console.log(`Елемент більший за ${value} не знайдено.`);
