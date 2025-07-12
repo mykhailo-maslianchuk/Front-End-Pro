@@ -1,48 +1,19 @@
 'use strict';
 
-function findValuesByKey(obj, targetKey) {
-    const result = [];
+const checkbox = document.getElementById('checkbox');
+const body = document.body;
 
-    function search(current) {
-        if (Array.isArray(current)) {
-            for (const item of current) {
-                search(item);
-            }
-        } else if (typeof current === 'object' && current !== null) {
-            for (const key in current) {
-                if (key === targetKey) {
-                    result.push(current[key]);
-                }
-                search(current[key]);
-            }
-        }
-    }
-    search(obj);
-    return result;
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-theme');
+    checkbox.checked = true;
 }
 
-const data = {
-    id: 1,
-    name: "root",
-    meta: {
-        id: 2,
-        parent: {
-            id: 3,
-            name: "leaf",
-        },
-    },
-    array: [
-        { id: 4 },
-        { name: "node", children: [{ id: 5 }] },
-    ],
-};
+checkbox.addEventListener('change', function () {
+    body.classList.toggle('dark-theme');
 
-console.log(findValuesByKey(data, "id"));
-
-
-
-
-
-
-
-
+    if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+});

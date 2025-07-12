@@ -1,118 +1,73 @@
-/* Reset and base styles  */
-* {
-    padding: 0px;
-    margin: 0px;
-    border: none;
-    font-family: "Montserrat";
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #e6ecff;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+body.dark-theme {
+    background-color: #1e1e1e;
 }
 
-/* Links */
-a,
-a:link,
-a:visited {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-/* Common */
-aside,
-nav,
-footer,
-header,
-section,
-main {
-    display: block;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    font-size: inherit;
-    font-weight: inherit;
-}
-
-menu,
-ul li {
-    list-style: none;
-}
-
-nav,
-ul li {
-    list-style: none;
-}
-
-ul,
-ul li {
-    list-style: none;
-}
-
-img {
-    vertical-align: top;
-}
-
-img,
-svg {
-    max-width: 100%;
-    height: auto;
-}
-
-address {
-    font-style: normal;
-}
-
-/* Form */
-input,
-textarea,
-button,
-select {
-    font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    background-color: transparent;
-}
-
-input::-ms-clear {
+#checkbox {
     display: none;
 }
 
-button,
-input[type=submit] {
-    display: inline-block;
-    box-shadow: none;
-    background-color: transparent;
-    background: none;
-    cursor: pointer;
-}
-
-input:focus,
-input:active,
-button:focus,
-button:active {
-    outline: none;
-}
-
-button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
-
-label {
-    cursor: pointer;
-}
-
-legend {
+.toggler {
     display: block;
-}/*# sourceMappingURL=reset.css.map *
+    width: 300px;
+    height: 150px;
+    border: 5px solid #4672fe;
+    border-radius: 75px;
+    position: relative;
+    cursor: pointer;
+    background-color: #e6ecff;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+body.dark-theme label.toggler {
+    background-color: #1e1e1e;
+    border-color: #8888ff;
+}
+
+.sun,
+.moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sun {
+    left: 20px;
+}
+
+.moon {
+    right: 20px;
+}
+
+.ball {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 120px;
+    background-color: #4672fe;
+    border-radius: 50%;
+    z-index: 2;
+    transition: transform 0.4s ease;
+    box-shadow: 0 4px 12px rgba(70, 114, 254, 0.4);
+    pointer-events: none;
+}
+
+#checkbox:checked + .ball {
+    transform: translateX(145px) translateY(-50%);
+}
+
+
