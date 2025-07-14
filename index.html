@@ -11,11 +11,15 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<label for="checkbox" class="toggler">
-  <input type="checkbox" id="checkbox">
-  <span class="ball"></span>
-  <i class="ri-sun-line sun"></i>
-  <i class="ri-sun-line moon"></i>
-</label>
+<select id="filter">
+  <option value="all">Усі</option>
+  <option value="fruit">Фрукти</option>
+  <option value="vegetable">Овочі</option>
+</select>
+
+<div class="card" data-category="fruit">🍎 Яблуко</div>
+<div class="card" data-category="vegetable">🥕 Морква</div>
+<div class="card" data-category="fruit">🍌 Банан</div>
+
 </body>
 </html>
