@@ -1,0 +1,20 @@
+.alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+
+.red {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+[data-custom] {
+    background-color: pink;
+    padding: 10px;
+    border-radius: 10px;
+}

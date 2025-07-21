@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Події в DOM</title>
+    <script src="./js/dom_events.js" defer></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Демонстрація подій у DOM</h1>
+
+<!-- Події через HTML-атрибути (не рекомендується в реальних проектах) -->
+<h3>Inline подія (через атрибут)</h3>
+<h2 onmouseover="console.log('Привіт від заголовка')">Наведи на мене</h2>
+<input type="button" value="Натисни мене" onclick="alert('Клік!')">
+<input type="button" onclick="countRabbits()" value="Порахувати кроликів">
+
+<hr>
+
+<!-- Події через властивості DOM-елементів -->
+<h3>Подія через властивість JS (onclick)</h3>
+<input id="elem" type="button" value="Натисни мене!" data-btn-click-me>
+
+<hr>
+
+<!-- Делегування подій (через addEventListener) -->
+<h3>Делегування подій на батьківському елементі</h3>
+<div data-btn-toolbar>
+    <button name="add-btn">Додати</button>
+    <button name="edit-btn">Редагувати</button>
+    <button name="remove-btn">Видалити</button>
+    <button name="remove-default-listening">Прибрати слухач</button>
+</div>
+</body>
+</html>
