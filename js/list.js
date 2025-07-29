@@ -1,47 +1,43 @@
-const productsBody = document.getElementById('productsBody');
+'use strict';
 
-let products = JSON.parse(localStorage.getItem('products')) || [];
+document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.getElementById("productTableBody");
 
-products = products.reverse();
+    function loadProducts() {
+        const products = JSON.parse(localStorage.getItem("products") || "[]");
+        tableBody.innerHTML = "";
 
-function createProductRow(product) {
-    const tr = document.createElement('tr');
+        if (products.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4" class="text-center">Товарів немає</td></tr>';
+            return;
+        }
 
-    tr.innerHTML = `
+        products.forEach(product => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
         <td>${product.id}</td>
         <td>${product.title}</td>
-        <td>${product.price}</td>
-        <td><button class="btn btn-warning btn-edit" data-id="${product.id}">Редагувати</button></td>
-        <td><button class="btn btn-danger btn-delete" data-id="${product.id}">Видалити</button></td>`
-
-    return tr;
-}
-
-productsBody.innerHTML = '';
-
-products.forEach(product => {
-    const tr = createProductRow(product);
-    productsBody.appendChild(tr);
-});
-
-function renderTable() {
-    productsBody.innerHTML = '';
-    products.forEach(product => {
-        const tr = createProductRow(product);
-        productsBody.appendChild(tr);
-    });
-}
-
-renderTable();
-
-productsBody.addEventListener('click', function(event) {
-    if(event.target.classList.contains('btn-delete')) {
-        const idToDelete = Number(event.target.dataset.id);
-
-        products = products.filter(product => product.id !== idToDelete);
-
-        localStorage.setItem('products', JSON.stringify(products));
-
-        renderTable();
+        <td>${parseFloat(product.price).toFixed(2)} грн</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" onclick="editProduct(${product.id})">Редагувати</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Видалити</button>
+        </td>
+      `;
+            tableBody.appendChild(tr);
+        });
     }
+
+    window.editProduct = function (id) {
+        localStorage.setItem("selectedProductID", id);
+        window.location.href = "edit.html";
+    };
+
+    window.deleteProduct = function (id) {
+        let products = JSON.parse(localStorage.getItem("products") || "[]");
+        products = products.filter(p => p.id !== id);
+        localStorage.setItem("products", JSON.stringify(products));
+        loadProducts();
+    };
+
+    loadProducts();
 });
