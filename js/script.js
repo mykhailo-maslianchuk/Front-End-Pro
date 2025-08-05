@@ -1,90 +1,121 @@
 'use strict';
 
-function Student(firstName, lastName, birthYear){
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthYear = birthYear;
-    this.marks = [];
-    this.attendance = new Array(25).fill(null);
-
-    this.present = function() {
-        if (!this.attendance.includes(null)) {
-            console.warn("Всі 25 занять уже відмічені!");
-            return;
-        }
-
-        for (let i = 0; i < this.attendance.length; i++) {
-            if (this.attendance[i] === null) {
-                this.attendance[i] = true;
-                break;
-            }
-        }
-    };
-
-    this.absent = function() {
-        if (!this.attendance.includes(null)) {
-            console.warn("Всі 25 занять уже відмічені!");
-            return;
-        }
-
-        for (let i = 0; i < this.attendance.length; i++) {
-            if (this.attendance[i] === null) {
-                this.attendance[i] = false;
-                break;
-            }
-        }
-    };
-
-    this.getAge =  function() {
-        return new Date().getFullYear() - this.birthYear;
-    }
-
-    this.getAverageMark =  function() {
-        if(this.marks.length === 0) return 0;
-        let sum = this.marks.reduce((total, val) => total + val, 0);
-        return sum / this.marks.length;
-    }
-
-    this.summary = function (){
-        let avgMark = this.getAverageMark();
-
-        let total = this.attendance.filter(val => val !== null).length;
-        let visited = this.attendance.filter(val => val === true).length;
-        let avgVisit = total === 0 ? 0 : visited / total;
-
-        if (avgMark > 90 && avgVisit > 0.9) {
-            return "Молодець!";
-        } else if (avgMark > 90 || avgVisit > 0.9) {
-            return "Добре, але можна краще";
-        } else {
-            return "Редиска!";
-        }
-    }
-    this.info = function (){
-        let totalLessons = this.attendance.length;
-        let visited = this.attendance.filter(val => val === true).length;
-        let visitRate = totalLessons === 0 ? 0 : (visited / totalLessons * 100).toFixed(2);
-
-        return `Імʼя: ${this.firstName} ${this.lastName}\nВік: ${this.getAge()}\nСередній бал: ${this.getAverageMark().toFixed(2)}\nВідвідування: ${visited}/${totalLessons} (${visitRate}%)`
-    }
+function TodoItem(title, description, dueDate) {
+    this.id = Date.now(); // унікальний ідентифікатор
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.createdAt = new Date().toISOString();
 }
 
-let student_1 = new Student('John', 'Doe', 2005);
-student_1.present()
-student_1.present()
-student_1.present()
-student_1.present()
-student_1.absent()
-student_1.marks.push(20, 40, 60, 100)
-console.log(student_1.info())
+function TodoModel() {
+    this.items = JSON.parse(localStorage.getItem('todos')) || [];
 
-let student_2 = new Student('Mykhailo', 'Maslianchuk', 2004);
-student_2 .present()
-student_2.present()
-student_2.present()
-student_2.present()
-student_2.absent()
-student_2.present()
-student_2.present()
-student_2.marks.push(20, 40, 60, 80)
-console.log(student_2.info())
+    this.addItem = function(todoItem) {
+        this.items.push(todoItem);
+        this.save();
+    };
+
+    this.deleteItem = function(id) {
+        this.items = this.items.filter(item => item.id !== id);
+        this.save();
+    };
+
+    this.save = function() {
+        localStorage.setItem('todos', JSON.stringify(this.items));
+    };
+
+    this.getAll = function() {
+        return this.items;
+    };
+}
+
+
+function TodoView() {
+    const list = document.getElementById('todo-list');
+    const form = document.getElementById('todo-form');
+    const inputTitle = document.getElementById('todo-title');
+    const inputDesc = document.getElementById('todo-description');
+    const inputDeadline = document.getElementById('todo-deadline');
+
+    this.clearForm = function () {
+        inputTitle.value = '';
+        inputDesc.value = '';
+        inputDeadline.value = '';
+    };
+
+    this.renderItem = function (todoItem, onDelete) {
+        const li = document.createElement('li');
+        li.dataset.id = todoItem.id;
+
+        li.innerHTML = `
+            <div class="todo-text">
+                <strong>${todoItem.title}</strong>
+                <p>${todoItem.description}</p>
+                <small>Дедлайн: ${todoItem.dueDate || '—'}</small><br>
+                <small>Створено: ${new Date(todoItem.createdAt).toLocaleDateString()}</small>
+            </div>
+            <div class="todo-actions">
+                <button class="edit-btn">Редагувати</button>
+                <button class="delete-btn">Видалити</button>
+            </div>
+        `;
+
+        li.querySelector('.delete-btn').addEventListener('click', () => {
+            onDelete(todoItem.id);
+        });
+
+        li.querySelector('.edit-btn').addEventListener('click', () => {
+            window.location.href = `edit.html?id=${todoItem.id}`;
+        });
+
+        list.appendChild(li);
+    };
+
+    this.clearList = function () {
+        list.innerHTML = '';
+    };
+
+    this.renderAll = function (items, onDelete) {
+        this.clearList();
+        items.forEach(item => this.renderItem(item, onDelete));
+    };
+
+    this.getFormElements = function () {
+        return { form, inputTitle, inputDesc, inputDeadline };
+    };
+}
+
+function TodoController(model, view) {
+    const { form, inputTitle, inputDesc, inputDeadline } = view.getFormElements();
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const title = inputTitle.value.trim();
+        const description = inputDesc.value.trim();
+        const dueDate = inputDeadline.value;
+
+        if (!title) {
+            alert("Будь ласка, введіть назву завдання.");
+            return;
+        }
+
+        const todo = new TodoItem(title, description, dueDate);
+        model.addItem(todo);
+        view.renderAll(model.getAll(), handleDelete);
+        view.clearForm();
+    });
+
+    function handleDelete(id) {
+        model.deleteItem(id);
+        view.renderAll(model.getAll(), handleDelete);
+    }
+
+    view.renderAll(model.getAll(), handleDelete);
+}
+
+
+const model = new TodoModel();
+const view = new TodoView();
+const controller = new TodoController(model, view);

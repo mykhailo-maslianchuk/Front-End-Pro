@@ -1,16 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Homework-38</title>
-  <script src="./js/script.js" defer></script>
-  <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ToDo Manager</title>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
+<div class="wrapper">
+  <div class="form-panel">
+    <h2>Нове завдання</h2>
+    <form id="todo-form">
+      <label for="todo-title">Назва</label>
+      <input type="text" id="todo-title" required />
 
+      <label for="todo-description">Опис</label>
+      <textarea id="todo-description" rows="4"></textarea>
+
+      <label for="todo-deadline">Дедлайн</label>
+      <input type="date" id="todo-deadline" />
+
+      <button type="submit">Додати</button>
+    </form>
+  </div>
+
+  <div class="list-panel">
+    <h2>Список завдань</h2>
+    <ul id="todo-list"></ul>
+  </div>
+</div>
+
+<script src="./js/script.js"></script>
 </body>
 </html>
