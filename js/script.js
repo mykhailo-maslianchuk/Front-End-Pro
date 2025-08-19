@@ -1,74 +1,61 @@
 'use strict';
 
-class Student {
-    constructor(firstName, lastName, birthYear) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthYear = birthYear;
-        this.marks = [];
-        this.attendance = new Array(25).fill(null);
+class URLParser {
+    constructor(url) {
+        this._url = String(url);
     }
 
-    present() {
-        const index = this.attendance.indexOf(null);
-        if (index !== -1) {
-            this.attendance[index] = true;
-        } else {
-            console.warn("⚠️ Всі 25 занять уже відмічені!");
+    _afterProtocol() {
+        const parts = this._url.split('://');
+        return parts.length > 1 ? parts[1] : this._url;
+    }
+
+    get protocol() {
+        const i = this._url.indexOf('://');
+        if (i === -1) return '';
+        return this._url.slice(0, i) + ':';
+    }
+
+    get hostname() {
+        const afterProtocol = this._afterProtocol();       // "example.com/..."
+        const slash = afterProtocol.indexOf('/');
+        return slash === -1 ? afterProtocol : afterProtocol.slice(0, slash);
+    }
+
+    get path() {
+        const afterProtocol = this._afterProtocol();       // "example.com/products/item?..."
+        const slash = afterProtocol.indexOf('/');
+        if (slash === -1) return '/';
+        const afterHost = afterProtocol.slice(slash);      // "/products/item?search=..."
+        const q = afterHost.indexOf('?');
+        return q === -1 ? (afterHost || '/') : (afterHost.slice(0, q) || '/');
+    }
+
+    get queryParams() {
+        const afterProtocol = this._afterProtocol();
+        const qIndex = afterProtocol.indexOf('?');
+        if (qIndex === -1) return {};
+
+        const queryString = afterProtocol.slice(qIndex + 1);
+        if (!queryString) return {};
+
+        const pairs = queryString.split('&');
+        const params = {};
+
+        for (const pair of pairs) {
+            if (!pair) continue;
+            const [rawKey, rawValue = ''] = pair.split('=');
+            const key = decodeURIComponent(rawKey || '');
+            const value = decodeURIComponent(rawValue || '');
+            params[key] = value; // повтор ключа перезапише значення — ок для простої версії
         }
-    }
 
-    absent() {
-        const index = this.attendance.indexOf(null);
-        if (index !== -1) {
-            this.attendance[index] = false;
-        } else {
-            console.warn("⚠️ Всі 25 занять уже відмічені!");
-        }
-    }
-
-    getAge() {
-        return new Date().getFullYear() - this.birthYear;
-    }
-
-    getAverageMark() {
-        if (this.marks.length === 0) return 0;
-        const sum = this.marks.reduce((acc, val) => acc + val, 0);
-        return sum / this.marks.length;
-    }
-
-    summary() {
-        const avgMark = this.getAverageMark();
-        const totalLessons = this.attendance.filter(val => val !== null).length;
-        const visited = this.attendance.filter(val => val === true).length;
-        const avgAttendance = totalLessons === 0 ? 0 : visited / totalLessons;
-
-        if (avgMark > 90 && avgAttendance > 0.9) {
-            return "Молодець!";
-        } else if (avgMark > 90 || avgAttendance > 0.9) {
-            return "Добре, але можна краще";
-        } else {
-            return "Редиска!";
-        }
-    }
-
-    info() {
-        return `Ім'я: ${this.firstName} ${this.lastName}, Вік: ${this.getAge()}, Середній бал: ${this.getAverageMark().toFixed(2)}`;
+        return params;
     }
 }
 
-
-const student1 = new Student("Іван", "Петренко", 2003);
-student1.marks.push(95, 100, 90);
-student1.present();
-student1.absent();
-student1.present();
-console.log(student1.info());
-console.log("Підсумок:", student1.summary());
-
-const student2 = new Student("Марія", "Коваленко", 2004);
-student2.marks.push(70, 80, 60);
-for (let i = 0; i < 10; i++) student2.present();
-for (let i = 0; i < 5; i++) student2.absent();
-console.log(student2.info());
-console.log("Підсумок:", student2.summary());
+const parser = new URLParser("https://example.com/products/item?search=book&page=2");
+console.log(parser.protocol);
+console.log(parser.hostname);
+console.log(parser.path);
+console.log(parser.queryParams);
